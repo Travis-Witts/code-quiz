@@ -13,7 +13,7 @@ function newGame() {
     start.append(startBTN)
 }
 
-function question(index) {
+function questions(index) {
         questionArea.empty();
         options.empty();
         start.empty();
@@ -26,24 +26,38 @@ function question(index) {
             options.append(ansBTN)
         }
 }
-questions()
+questions(1)
 
-
-
-
-
-
-
-
-
-
-
+function reward(cAnswer, guess) {
+    var counter = 2
+    var rightWrong = $("<div>").addClass("container-fluid")
+    rightWrong.css("border-top", "5px solid lightgrey")
+    rightWrong.css("color", "lightgrey")
+    start.append(rightWrong)
+    if (cAnswer == guess) {
+        rightWrong.text("Correct!")
+    }
+    else {
+        rightWrong.text("Incorrect!")
+        var decrement = timer.text()
+        decrement -= 10
+        timer.text(decrement)
+    }
+    counter = 1
+    var rewardTimer = setInterval(function() {
+        counter -= 1
+        if (counter === 0) {
+            start.empty()
+            clearInterval(rewardTimer);
+        }
+    }, 1000)
+}
 function gameClock() {
-    var sec = 60;
+    var sec = $("#time").text
     timer.text(sec) ;
     var gameClock = setInterval(function() {
         sec -= 1;
-        $.text(sec);
+        timer.text(sec);
         if (sec === "0") {
             // gameover function init
         }
