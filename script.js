@@ -5,6 +5,7 @@ var start = $("#start");
 var questionArray = [{question:"Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2}, {question:"Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2}, {question:"Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2}, {question:"Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2}, {question:"Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2}];
 var currentScore = 0
 var finished = false
+var hiscores = [1 , 2, 3, 4]
 
 
 function newGame() {
@@ -19,17 +20,16 @@ function newGame() {
 }
 
 function questions(index) {
-        questionArea.empty();
-        options.empty();
-        start.empty();
-        questionArea.append($("<h1>").text(questionArray[index].question));
-        for (i = 0; i < 4; i++) {
-            var ansBTN = $("<button>").text(questionArray[index].options[i])
-            ansBTN.prop("type", "button")
-            ansBTN.addClass("btn btn-outline-primary option")
-            ansBTN.attr("id", i)
-            options.append(ansBTN)
-        }
+    questionArea.empty();
+    options.empty();
+    questionArea.append($("<h1>").text(questionArray[index].question));
+    for (i = 0; i < 4; i++) {
+        var ansBTN = $("<button>").text(questionArray[index].options[i])
+        ansBTN.prop("type", "button")
+        ansBTN.addClass("btn btn-outline-primary option")
+        ansBTN.attr("id", i)
+        options.append(ansBTN)
+    }
 }
 // questions(1)
 
@@ -58,12 +58,12 @@ function reward(cAnswer, guess) {
     }, 1000)
 }
 function gameClock() {
-    var sec = $("#time").text
+    var sec = $("#time").text()
     timer.text(sec) ;
     var gameClock = setInterval(function() {
         sec -= 1;
         timer.text(sec);
-        if (sec === "0") {
+        if (sec === 0) {
             currentScore = 0
             clearInterval(gameClock)
         }
@@ -73,12 +73,12 @@ function gameClock() {
         }
     }, 1000);
 }
-function gameOver(seconds) {
+function gameOver() {
     questionArea.empty();
     options.empty();
     start.empty();
     questionArea.append($("<h1>").text("Quiz Over!"))
-    options.append($("<p>").text("You scored: " + seconds + " Please input your name:"))
+    options.append($("<p>").text("You scored: " + timer.text() + " Please input your name:"))
     var userInput = $("<textarea>").addClass("user-input")
     options.append(userInput)
     var submitBTN =  $("<button>").prop("type", "button");
@@ -86,7 +86,41 @@ function gameOver(seconds) {
     submitBTN.text("Submit")
     start.append(submitBTN)
 }
-gameOver(10)
-function highScores() {
-
+// gameOver(10)
+function highScores(newScore) {
+    questionArea.empty();
+    options.empty();
+    start.empty();
+    questionArea.append($("<h1>").text("High Scores"))
+    options.append($("<ol>").addClass("list-group")) 
+    for (i = 0; i < hiscores.length; i++) {
+        var newListItem = $("<li>").addClass("row list-item")
+        var numInList = $("<h5>").addClass("col-md-5")
+        numInList.text("1")
+        var userName = $("<p>").addClass("col-md-5")
+        userName.text("test")
+        var userScore = $("<p>").addClass("col-md-2")
+        userScore.text("Score: " + "10")
+        newListItem.append(numInList).append(userName).append(userScore)
+        $(".list-group").append(newListItem)
+    }
 }
+
+// Testing
+newGame()
+
+// listeners
+$(".start-button").on("click", function(event) {
+    event.preventDefault()
+    index = 0
+    questionArea.empty();
+    options.empty();
+    start.empty();
+    gameClock()
+    questions(index)
+})
+
+$("#0, #1, #2, #3").on("click", function(event) {
+    event.preventDefault()
+    console.log(this)
+})

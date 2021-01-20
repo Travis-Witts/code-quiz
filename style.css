@@ -1,15 +1,17 @@
 body {
     width: 100%;
     margin: 0 auto;
+    background-color: lightpink;
 }
 .container {
     max-width: 600px;
 }
+.right-or-wrong {
+    border-top: 2px solid lightgray;
+    text-align: center;
+}
 #timer {
     text-align: right;
-}
-#head-content {
-    border-bottom: 2px solid black;
 }
 #quiz {
     /* background-color:red; */
@@ -17,4 +19,7 @@ body {
 }
 #question, #options, #start {
     text-align: center;
+}
+.list-item {
+    background-color: lightgrey;
 }
