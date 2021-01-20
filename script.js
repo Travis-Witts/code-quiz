@@ -3,7 +3,7 @@ var timer = $("#time");
 var questionArea = $("#question");
 var options = $("#answer-area");
 var start = $("#start");
-var questionArray = [{ question: "Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2 }, { question: "Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2 }, { question: "Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2 }, { question: "Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2 }, { question: "Test", options: ["Wrong", "Wrong", "Right", "Wrong"], answer: 2 }];
+var questionArray = [{ question: "Inside of which element do you put Javascript code inside?", options: ["<js>", "<code>", "<script>", "<p>"], answer: 2 }, { question: "How do you define a function in JavaScript?", options: ["function myFunction()", "def myFunction()", "function = myFunction()", "define myFunction()"], answer: 0 }, { question: "Which of these IF statements would work", options: ["if i>5 {", "if (i > 5)", "if (i is greater than 5)", "if {i > 5}"], answer: 1 }, { question: "How do you start a for loop?", options: ["for (i < 10)", "for i = 10; i > 1 ", "for i * 7", "for (i = 7; i > 1; i--)"], answer: 3 }, { question: "What is the short cut to comment?", options: ["Ctrl + /", "Alt + F4", "Ctrl + W", "Windows Key + L"], answer: 0 }];
 var currentScore = 0
 var finished = false
 var hiscores = JSON.parse(localStorage.getItem("highScoresObj")) || []
@@ -125,7 +125,6 @@ function highScores() {
         score.text("Score: " + hiscores[i].scored)
         newListItem.append(numInList).append(userName).append(score)
         $(".list-group").append(newListItem)
-        console.log(hiscores[i].scored)
     }
 }
 
@@ -154,13 +153,14 @@ $(document).on("click", ".submit-button", function (event) {
     event.preventDefault()
     var user = $(".user-input").val()
     var userObj = { name: user, scored: userScore }
-    console.log(userObj)
     hiscores.push(userObj)
     hiscores.sort((a, b) => b.scored - a.scored);
     hiscores.splice(10)
-    console.log(hiscores)
     localStorage.setItem("highScoresObj", JSON.stringify(hiscores))
     highScores()
+    var hsBTN = $(document).find(".hsBTN")
+    hsBTN.attr("id", "scores")
+    hsBTN.text("< Play Again")
 })
 // This allows the user to cycle between the main game screen and the highscores page
 $(document).on("click", ".hsBTN", function (event) {
