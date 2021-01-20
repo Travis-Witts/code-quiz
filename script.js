@@ -1,4 +1,4 @@
-// Defining global Variables
+// Defining global Variables ***
 var timer = $("#time");
 var questionArea = $("#question");
 var options = $("#answer-area");
@@ -11,8 +11,8 @@ var index = 0
 var cAnswer = 0
 var countDown = 60
 var userScore = 0
-
-// This newgame function is run when 
+// Functions ***
+// This newgame function is run when the webpage is opened and whenever a new game is started
 function newGame() {
     questionArea.empty();
     options.empty();
@@ -27,7 +27,7 @@ function newGame() {
     startBTN.text("Start Quiz")
     start.append(startBTN)
 }
-
+// This function destroys the old question and then creates new divs for the question and options, it has a conditional if theres no more questions left it calls the gameover function
 function questions() {
     questionArea.empty();
     options.empty();
@@ -46,12 +46,12 @@ function questions() {
         gameOver()
     }
 }
-
+// This function is used for the scoring and can make the time lower if the user guesses incorrectly
 function reward(guess) {
     var counter = 2
     var rightWrong = $("<div>").addClass("container-fluid")
-    rightWrong.css("border-top", "5px solid lightgrey")
-    rightWrong.css("color", "lightgrey")
+    rightWrong.css("border-top", "5px solid darkgrey")
+    rightWrong.css("color", "darkgrey")
     start.append(rightWrong)
     if (cAnswer == guess) {
         rightWrong.text("Correct!")
@@ -74,6 +74,7 @@ function reward(guess) {
         }
     }, 1000)
 }
+// Function name is self explanitory it counts down for 60 changing the timer text() and checks if it has reached 0 or another finishing condition is met
 function gameClock() {
     timer.text(countDown);
     var gameClock = setInterval(function () {
@@ -89,6 +90,7 @@ function gameClock() {
         }
     }, 1000);
 }
+// Creates a new screen for when the game is finished that allows the user to type their name in and submit it to highscores
 function gameOver() {
     finished = true
     questionArea.empty();
@@ -104,6 +106,7 @@ function gameOver() {
     submitBTN.text("Submit")
     options.append(submitBTN)
 }
+// Displays the highscores in a list from highest to lowest
 function highScores() {
     questionArea.empty();
     options.empty();
@@ -146,7 +149,7 @@ $(document).on("click", ".ansBTN", function (event) {
     var guess = $(this).attr("id")
     reward(guess)
 });
-// This listener takes the user's input and score and add them to the high scores object when pressed.
+// This listener takes the user's input and score and add them to the high scores object when pressed, it also sorts the objects inside the array from highest to lowest and caps the amount of scores at 10
 $(document).on("click", ".submit-button", function (event) {
     event.preventDefault()
     var user = $(".user-input").val()
@@ -154,12 +157,12 @@ $(document).on("click", ".submit-button", function (event) {
     console.log(userObj)
     hiscores.push(userObj)
     hiscores.sort((a, b) => b.scored - a.scored);
-    hiscores.splice(5)
+    hiscores.splice(10)
     console.log(hiscores)
     localStorage.setItem("highScoresObj", JSON.stringify(hiscores))
     highScores()
 })
-// This allows the user to cycle between the main game screen and the highscores page.
+// This allows the user to cycle between the main game screen and the highscores page
 $(document).on("click", ".hsBTN", function (event) {
     event.preventDefault()
     if ($(this).attr("id") === "game") {

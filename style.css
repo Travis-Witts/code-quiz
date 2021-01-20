@@ -1,7 +1,7 @@
 body {
     width: 100%;
     margin: 0 auto;
-    background-color: lightblue;
+    background-image: url("./Assets/background.jpg");
 }
 .container {
     max-width: 600px;
@@ -27,8 +27,4 @@ body {
 .list-item {
     background-color: lightgrey;
     border: 1px solid black;
-}
-#list-group {
-    border-radius: 3px;
-
 }
