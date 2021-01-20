@@ -1,20 +1,24 @@
 body {
     width: 100%;
     margin: 0 auto;
-    background-color: lightpink;
+    background-color: lightblue;
 }
 .container {
     max-width: 600px;
 }
 .right-or-wrong {
-    border-top: 2px solid lightgray;
+    border-top: 2px solid black;
     text-align: center;
+}
+#head-content {
+    border-bottom: black;
+    background-color: cadetblue;
+    color: black
 }
 #timer {
     text-align: right;
 }
 #quiz {
-    /* background-color:red; */
     margin-top: 50px;
 }
 #question, #options, #start {
@@ -22,4 +26,9 @@ body {
 }
 .list-item {
     background-color: lightgrey;
+    border: 1px solid black;
+}
+#list-group {
+    border-radius: 3px;
+
 }
