@@ -1,5 +1,5 @@
 # code-quiz
-A link to a fully functional deployed website is [HERE](https://travis297.github.io/horiseon-marketing/).
+A link to a fully functional deployed website is [HERE](https://travis297.github.io/code-quiz/).
 
 A fully functional Coding Quiz using JQuery
 
