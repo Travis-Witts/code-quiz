@@ -9,6 +9,7 @@ A fully functional Coding Quiz using JQuery
 
 * [Installation](#installation)
 * [Usage](#usage)
+* [License](#license)
 
 ## Installation
 
@@ -30,3 +31,6 @@ Once starting the quiz, there will be a question alongside 4 multiple choice ans
 
 After playing the quiz the user can compete against friends trying to get the most correct answers in the shortest amount of time:
 ![alt text](assets/hiscores.png)
+
+## License
+This project is licensed under the terms of MIT License.
